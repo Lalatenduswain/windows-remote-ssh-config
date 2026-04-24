@@ -287,5 +287,5 @@ Write-Log ""
 Write-Host ""
 Write-Host "=== SSH Setup Summary ===" -ForegroundColor Cyan
 Write-Host "Log saved to: $LogFile" -ForegroundColor Yellow
-Write-Host "Test SSH with: ssh -i <private-key> Administrator@$env:COMPUTERNAME" -ForegroundColor Green
+Write-Host "Test SSH with: ssh -i `<private-key`> Administrator@$env:COMPUTERNAME" -ForegroundColor Green
 Write-Host ""
