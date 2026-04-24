@@ -121,6 +121,29 @@ ssh-rsa AAAA... your-name@company
 
 ## 🛠️ Troubleshooting
 
+### "File cannot be loaded because running scripts is disabled"
+This is a PowerShell execution policy error. The script isn't digitally signed, so PowerShell is blocking it.
+
+**Quick Fix (One-time):**
+```powershell
+powershell -ExecutionPolicy Bypass -File .\Setup-SSH-YourCompany.ps1
+```
+
+**Permanent Fix (Recommended):**
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+Then run your script normally:
+```powershell
+.\Setup-SSH-YourCompany.ps1
+```
+
+**Alternative (Unblock File):**
+```powershell
+Unblock-File -Path .\Setup-SSH-YourCompany.ps1
+.\Setup-SSH-YourCompany.ps1
+```
+
 ### "Access Denied"
 → Run PowerShell as **Administrator** (right-click → "Run as administrator")
 
