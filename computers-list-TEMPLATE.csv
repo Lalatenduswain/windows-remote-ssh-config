@@ -1,0 +1,17 @@
+ComputerName,Location,Department,SSHPort,Status,Notes
+PC-SALES-001,Office Floor 1,Sales,22,Pending,Main sales workstation
+PC-SALES-002,Office Floor 1,Sales,22,Pending,Backup workstation
+PC-SALES-003,Office Floor 1,Sales,22,Pending,
+PC-SALES-004,Office Floor 2,Sales,22,Pending,
+PC-ADMIN-001,Office Admin,Admin,22,Pending,Primary admin machine
+PC-ADMIN-002,Office Admin,Admin,22,Pending,Secondary admin machine
+PC-ADMIN-003,Office Admin,Admin,22,Pending,
+PC-IT-01,Server Room,IT,2222,Pending,Use custom port 2222
+PC-IT-02,Server Room,IT,22,Pending,
+PC-IT-03,Server Room,IT,22,Pending,
+SERVER-01,Server Room,Infrastructure,22,Pending,File server
+SERVER-02,Server Room,Infrastructure,22,Pending,Database server
+SERVER-03,Server Room,Infrastructure,22,Pending,Backup server
+PC-DESIGN-01,Office Floor 3,Design,22,Pending,
+PC-DESIGN-02,Office Floor 3,Design,22,Pending,
+PC-DESIGN-03,Office Floor 3,Design,22,Pending,

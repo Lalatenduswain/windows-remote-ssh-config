@@ -1,0 +1,125 @@
+================================================================================
+SSH SETUP FOR YOUR COMPANY - QUICK START
+================================================================================
+
+Your public key is already configured in these scripts!
+
+FILES YOU HAVE:
+  1. Setup-SSH-YourCompany.ps1   → Single PC setup script (PowerShell)
+  2. Deploy-SSH-YourCompany.ps1  → Batch deployment script (multiple PCs)
+  3. Install-SSH.bat              → One-click installer for single PC
+  4. This file (QUICK-START.txt)
+
+================================================================================
+OPTION 1: ONE-CLICK INSTALLATION (Single PC - Easiest)
+================================================================================
+
+1. Copy Install-SSH.bat to the PC you want to configure
+2. Right-click Install-SSH.bat → "Run as administrator"
+3. Wait for completion
+4. Done!
+
+Test connection:
+  ssh -i your-private-key Administrator@PC-NAME
+
+================================================================================
+OPTION 2: PowerShell (Single PC - More Control)
+================================================================================
+
+1. Open PowerShell as Administrator
+2. Navigate to the folder with the scripts
+3. Run:
+     .\Setup-SSH-YourCompany.ps1
+
+4. To use custom port (not 22):
+     .\Setup-SSH-YourCompany.ps1 -SSHPort 2222
+
+5. To set up for a specific user instead of Administrator:
+     .\Setup-SSH-YourCompany.ps1 -Username "john.doe"
+
+================================================================================
+OPTION 3: BATCH DEPLOYMENT (Multiple PCs)
+================================================================================
+
+Deploy to 10 PCs at once:
+
+1. Open PowerShell as Administrator on your admin PC
+2. Navigate to the folder with the scripts
+3. Create a list of computer names:
+
+   $PCs = @(
+       "PC-SALES-001",
+       "PC-SALES-002",
+       "PC-SALES-003",
+       "PC-ADMIN-001",
+       "PC-ADMIN-002",
+       "PC-ADMIN-003",
+       "PC-IT-01",
+       "PC-IT-02",
+       "PC-IT-03",
+       "PC-IT-04"
+   )
+
+4. Run deployment:
+   .\Deploy-SSH-YourCompany.ps1 -ComputerNames $PCs
+
+5. Sit back and wait! The script will:
+   - Test each computer
+   - Copy the setup script
+   - Configure SSH
+   - Report success/failure
+
+6. Check results in: C:\Logs\Deploy-SSH-Summary-*.log
+
+================================================================================
+VERIFY SSH IS WORKING
+================================================================================
+
+From your client machine (Linux/Mac/Windows):
+
+  ssh -i your-private-key Administrator@COMPUTER-NAME
+
+You should see Windows PowerShell prompt:
+
+  Windows PowerShell
+  Copyright (c) Microsoft Corporation. All rights reserved.
+
+  PS C:\Users\Administrator>
+
+================================================================================
+TROUBLESHOOTING
+================================================================================
+
+1. "Access Denied" when running scripts
+   → Right-click PowerShell/CMD → "Run as administrator"
+
+2. SSH connection times out
+   → Check Windows Firewall allows SSH (port 22)
+   → Check computer is online
+   → Check computer name/IP is correct
+
+3. "Permission denied" on SSH login
+   → Check log file: C:\Logs\SSH-Setup-*.log
+   → Verify private key matches public key
+   → Check authorized_keys permissions
+
+4. Need to check setup log
+   → Look in: C:\Logs\SSH-Setup-*.log
+
+================================================================================
+YOUR PUBLIC KEY (Already embedded in scripts)
+================================================================================
+
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC8IdDscm8+MRACm3dpE6796u2Y+vxi9bajA/y1YKE+l4ylGNzk43YGBpSXEjMlGe5t6S+PYg6xi0Wr0wO1mROwF1RSkEYee0Pszue+kDm1yuDEk3EjasdCgrxwnz5J1T6EN2ngBjcK7ZPDvhni1fcfG1VJNblzpQlzC8vkvU4aRABCkqV4jgio/+IfXO9Qqo/0NP3IEBUHFuTbSPpMwMWDoxwIQN/K6e7nCjuQ0t+YAuQLIRRYzBDS+j79/IL2TEbD0kbopnZqaiZ94HU5KlZ1G1EmZurhQaSP6UIF+YXMqwkLFrNUuisfWXZduo3XRS4fj5xQpZNfZwNzjf6IAaQwLcRfpMpVkoYUX00hklLf0OInSDjBcGoDqBFg7NyG2Kty9Ihm9Fl+NWpbMDb0mTZ9/l1dUOy8WMzEhPlFZuSGBfLc/9L+3FQDv48HuvYyajOtmgPdytHmVc+Lbj62kX30qPq297g628vBE0PrWj/2QJGPCNeoXGfbnzmGAW2a3yU=
+
+================================================================================
+SUPPORT
+================================================================================
+
+All scripts create detailed logs in: C:\Logs\
+
+Check the logs if anything goes wrong.
+
+Questions? Review the comments in the PowerShell scripts for more details.
+
+================================================================================
