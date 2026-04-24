@@ -11,6 +11,7 @@ Your public SSH key is **pre-configured** in all scripts. Just run them!
 | **Setup-SSH-YourCompany.ps1** | Single PC setup (PowerShell) | Manually configure one PC at a time |
 | **Deploy-SSH-YourCompany.ps1** | Deploy to multiple PCs (PSRemoting) | Batch deploy to 5-50 PCs |
 | **Deploy-SSH-FromCSV.ps1** | Deploy using CSV file | Large deployments (50+ PCs) with tracking |
+| **Set-PowerShellAsDefaultSSHShell.ps1** | Set PowerShell as default SSH shell | After SSH setup, use for single/batch configs |
 | **Install-SSH.bat** | One-click installer | Easiest - just double-click & run as admin |
 | **computers-list-TEMPLATE.csv** | Computer inventory | Create your own list for CSV deployment |
 | **QUICK-START.txt** | Quick reference guide | Read this first! |
@@ -63,6 +64,34 @@ $Computers = @("PC-001","PC-002","PC-003")
 .\Deploy-SSH-FromCSV.ps1 -CSVFile "computers-list.csv"
 ```
 **Best for:** 50+ PCs, tracking, reporting
+
+---
+
+## 🔧 Configure PowerShell as Default SSH Shell
+
+After SSH is set up, you can optionally set PowerShell as the default shell for SSH connections.
+
+### **Local Machine**
+```powershell
+# PowerShell 5.1 (Built-in Windows)
+.\Set-PowerShellAsDefaultSSHShell.ps1
+
+# PowerShell 7+ (Modern)
+.\Set-PowerShellAsDefaultSSHShell.ps1 -PowerShellVersion "7"
+```
+
+### **Multiple Computers (Batch)**
+```powershell
+$Computers = @("PC-001","PC-002","PC-003")
+.\Set-PowerShellAsDefaultSSHShell.ps1 -ComputerNames $Computers
+```
+
+**After this, SSH connections will use PowerShell instead of Command Prompt:**
+```bash
+ssh -i <private-key> Administrator@COMPUTERNAME
+# Opens PowerShell directly
+PS C:\Users\Administrator>
+```
 
 ---
 
@@ -222,6 +251,14 @@ $PCs = @("DESKTOP-ABC123", "LAPTOP-XYZ789", "SERVER-001")
 .\Deploy-SSH-FromCSV.ps1 -CSVFile "computers-list.csv"
 # 3. Review results:
 Import-Csv C:\Logs\Deploy-SSH-Summary-*.csv | Format-Table
+```
+
+### Set PowerShell as Default Shell (Batch)
+```powershell
+# 1. Set up SSH first
+.\Deploy-SSH-FromCSV.ps1 -CSVFile "computers-list.csv"
+# 2. Then configure PowerShell as default shell
+.\Set-PowerShellAsDefaultSSHShell.ps1 -ComputerNames @("PC-001","PC-002","PC-003")
 ```
 
 ---
